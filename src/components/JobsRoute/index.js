@@ -54,6 +54,41 @@ const salaryRangesList = [
   },
 ]
 
+const programmingLanguages = [
+  {
+    label: 'Python',
+    programmingId: 'PYTHON',
+  },
+  {
+    label: 'Java',
+    programmingId: 'JAVA',
+  },
+  {
+    label: 'C',
+    programmingId: 'C',
+  },
+  {
+    label: 'C++',
+    programmingId: 'C++',
+  },
+  {
+    label: 'JavaScript',
+    programmingId: 'JAVA_SCRIPT',
+  },
+  {
+    label: 'C#',
+    programmingId: 'C#',
+  },
+  {
+    label: 'R',
+    programmingId: 'R',
+  },
+  {
+    label: 'Ruby',
+    programmingId: 'Ruby',
+  },
+]
+
 class JobsRoute extends Component {
   state = {
     searchInput: '',
@@ -63,6 +98,7 @@ class JobsRoute extends Component {
     jobsDataApiStatus: apiStatusConstants.initial,
     salaryRange: '',
     employmentTypeList: [],
+    programmingLang: programmingLanguages[0].programmingId,
   }
 
   componentDidMount() {
@@ -413,6 +449,36 @@ class JobsRoute extends Component {
     </div>
   )
 
+  //   Programming Languages List
+  programmingLanguageContainer = () => {
+    const {programmingLang} = this.state
+
+    const onOptionChange = event => {
+      this.setState({programmingLang: event.target.value})
+    }
+
+    return (
+      <div className="programing-container">
+        <h1 className="heading">Select A Programming Language</h1>
+        <select
+          value={programmingLang}
+          className="select-program"
+          onChange={onOptionChange}
+        >
+          {programmingLanguages.map(each => {
+            const {programmingId, label} = each
+
+            return (
+              <option value={programmingId} key={programmingId}>
+                {label}
+              </option>
+            )
+          })}
+        </select>
+      </div>
+    )
+  }
+
   //   Render Loading View
   loadingView = () => (
     <div className="profile-render-container" data-testid="loader">
@@ -492,6 +558,8 @@ class JobsRoute extends Component {
             {this.employmentTypeContainer()}
             <hr className="hr-line" />
             {this.salaryRangeContainer()}
+            <hr className="hr-line" />
+            {this.programmingLanguageContainer()}
           </div>
           <div className="jobs-section">
             <div className="md-search-container">{this.searchContainer()}</div>

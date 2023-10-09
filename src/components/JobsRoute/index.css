@@ -116,13 +116,21 @@
   border-radius: 20px;
 }
 
-.salary-range-container {
+.salary-range-container,
+.programing-container {
   margin-bottom: 50px;
 }
 
 .salary-range-list-item,
 .employment-list-item {
   margin-bottom: 10px;
+}
+
+.select-program {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  font-size: 14px;
 }
 
 @media (min-width: 768px) {
